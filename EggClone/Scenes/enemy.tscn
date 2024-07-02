@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://chjro8br2ij10"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_to5jx"]
+[ext_resource type="Texture2D" uid="uid://bukus5va1sbqh" path="res://Assets/rat.png" id="2_wyq43"]
+
+[sub_resource type="Curve2D" id="Curve2D_mjt0a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 537, 102, 0, 0, 0, 0, 986, 102, 0, 0, 0, 0, 80, 102, 0, 0, 0, 0, 537, 102, 0, 0, 0, 0, 537, 102)
+}
+point_count = 5
+
+[sub_resource type="Animation" id="Animation_82muu"]
+resource_name = "run"
+length = 0.35
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gp63"]
+_data = {
+"run": SubResource("Animation_82muu")
+}
+
+[node name="Enemy" type="Path2D"]
+position = Vector2(43, -33)
+curve = SubResource("Curve2D_mjt0a")
+script = ExtResource("1_to5jx")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(537, 102)
+progress = 1812.0
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D"]
+position = Vector2(2.99994, -1)
+rotation = 0.00290413
+scale = Vector2(3, 3)
+texture = ExtResource("2_wyq43")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollow2D/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_5gp63")
+}
+
+[node name="Marker2D" type="Marker2D" parent="PathFollow2D"]
+position = Vector2(0, 61)
+rotation = 0.00290413
+
+[node name="BulletTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ForwardTimer" type="Timer" parent="."]
+
+[node name="GuessTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AlreadyGuessedTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="ForwardTimer" to="." method="_on_forward_timer_timeout"]
+[connection signal="timeout" from="GuessTimer" to="." method="_on_guess_timer_timeout"]
+[connection signal="timeout" from="AlreadyGuessedTimer" to="." method="_on_already_guessed_timer_timeout"]

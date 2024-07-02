@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://coprar0h1anvg"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_bullet.gd" id="1_7hl7n"]
+[ext_resource type="Texture2D" uid="uid://cytylba01cqsd" path="res://Assets/potions.png" id="2_atw46"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2y0v"]
+atlas = ExtResource("2_atw46")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux2ur"]
+atlas = ExtResource("2_atw46")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmof5"]
+atlas = ExtResource("2_atw46")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxa0x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2y0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux2ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmof5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gpb45"]
+height = 34.0137
+
+[node name="enemy_bullet" type="CharacterBody2D" groups=["bullet"]]
+scale = Vector2(10, 10)
+collision_layer = 32
+collision_mask = 24
+script = ExtResource("1_7hl7n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1.19209e-07)
+rotation = 0.00074625
+sprite_frames = SubResource("SpriteFrames_mxa0x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -1.19209e-07)
+rotation = 0.416521
+shape = SubResource("CapsuleShape2D_gpb45")

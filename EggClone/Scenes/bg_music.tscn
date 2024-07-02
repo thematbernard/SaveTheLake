@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7j5c1g1xc7hl"]
+
+[ext_resource type="AudioStream" uid="uid://j5i0hlyeikyk" path="res://Assets/sounds/LoFi_song.mp3" id="1_rr0vi"]
+
+[node name="BG_Music" type="AudioStreamPlayer2D"]
+process_mode = 3
+stream = ExtResource("1_rr0vi")
+autoplay = true
+bus = &"Background"
+area_mask = 0

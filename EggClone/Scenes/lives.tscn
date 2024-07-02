@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://buoxnswaaadim"]
+
+[ext_resource type="Texture2D" uid="uid://7dopoaajvvg3" path="res://Assets/bread_sprite_sheet.png" id="1_l0r6f"]
+
+[node name="Lives" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_l0r6f")
+hframes = 2
+
+[node name="Lives2" type="Sprite2D" parent="."]
+position = Vector2(0, 33)
+texture = ExtResource("1_l0r6f")
+hframes = 2
+
+[node name="Lives3" type="Sprite2D" parent="."]
+position = Vector2(0, 66)
+texture = ExtResource("1_l0r6f")
+hframes = 2

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3ss0nwbl80pe"]
+
+[ext_resource type="Script" path="res://Scenes/EggCollectorArea.gd" id="1_dbr84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6w5a8"]
+size = Vector2(1364, 39)
+
+[node name="Egg Collector" type="Node2D"]
+
+[node name="EggCollectorArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 40
+script = ExtResource("1_dbr84")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EggCollectorArea"]
+position = Vector2(581, -27)
+shape = SubResource("RectangleShape2D_6w5a8")
+
+[connection signal="body_entered" from="EggCollectorArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="EggCollectorArea" to="EggCollectorArea" method="_on_body_entered"]

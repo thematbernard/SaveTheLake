@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d34yx2lgf3lev"]
+
+[ext_resource type="Script" path="res://EnemyBulletCollectorArea.gd" id="1_tvu8u"]
+[ext_resource type="AudioStream" uid="uid://mn4ujykylj7a" path="res://Assets/sounds/bubble.mp3" id="2_0v2km"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1l4v"]
+size = Vector2(1195, 20)
+
+[node name="EnemyBulletCollector" type="Node2D"]
+
+[node name="EnemyBulletCollectorArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_tvu8u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBulletCollectorArea"]
+position = Vector2(567.5, 0)
+shape = SubResource("RectangleShape2D_k1l4v")
+
+[node name="BubblePlayer" type="AudioStreamPlayer2D" parent="EnemyBulletCollectorArea"]
+stream = ExtResource("2_0v2km")
+
+[connection signal="body_entered" from="EnemyBulletCollectorArea" to="EnemyBulletCollectorArea" method="_on_body_entered"]

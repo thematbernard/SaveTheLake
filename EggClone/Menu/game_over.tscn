@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8eyhuvbpeekl"]
+
+[ext_resource type="Script" path="res://Game_Over.gd" id="1_x4mhb"]
+
+[node name="Game_Over" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_x4mhb")
+
+[node name="Main Menu" type="Button" parent="."]
+layout_mode = 2
+offset_left = 520.0
+offset_top = 302.0
+offset_right = 616.0
+offset_bottom = 333.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 547.0
+offset_top = 405.0
+offset_right = 589.0
+offset_bottom = 436.0
+text = "Quit"

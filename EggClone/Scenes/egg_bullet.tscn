@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca2ji8sv0leqq"]
+
+[ext_resource type="Script" path="res://Scenes/egg_bullet.gd" id="1_x3gsv"]
+[ext_resource type="Texture2D" uid="uid://bvxtlcbrs35q8" path="res://Assets/Egg.png" id="2_pwr5k"]
+[ext_resource type="AudioStream" uid="uid://drg40x6lttpt" path="res://Assets/sounds/clap.mp3" id="3_i7c5i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_viyvy"]
+radius = 9.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rssnm"]
+radius = 9.0
+height = 22.0
+
+[node name="EggBullet" type="CharacterBody2D" groups=["EggBullet"]]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_x3gsv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pwr5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["egg"]]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_viyvy")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_rssnm")
+
+[node name="Break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_i7c5i")
+bus = &"SFX"
+area_mask = 32
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
